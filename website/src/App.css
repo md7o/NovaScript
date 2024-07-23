@@ -1,0 +1,30 @@
+/* index.css or App.css */
+@import "highlight.js/styles/github.css"; /* Or any other theme you prefer */
+
+body {
+  background-color: #101114;
+  font-family: cairo;
+}
+
+.hlao {
+  -webkit-text-stroke: white 1px;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in {
+  animation: slide-in 0.5s ease-in-out forwards;
+}
+
+.scroll-hidden {
+  scrollbar-width: none;
+}
