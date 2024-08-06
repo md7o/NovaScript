@@ -48,7 +48,7 @@ const Blogs = () => {
     <div className="BlogBG">
       <BlogHeader />
 
-      <h1 className="text-white text-center text-5xl font-bold mt-36">
+      <h1 className="text-white text-center text-5xl font-bold mt-32">
         صفحة المدونات
       </h1>
 
