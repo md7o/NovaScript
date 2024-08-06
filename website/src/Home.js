@@ -9,10 +9,10 @@ function Home() {
   return (
     <div>
       <Header />
-      <div className="bg-white h-0.5 w-2/5 mx-auto my-10" />
-      <OptionsButt />
+      <div className="bg-white h-0.5 w-2/5 mx-auto my-10 mb-24" />
+      {/* <OptionsButt /> */}
       <PreviousApps />
-      <div className="bg-white h-0.5 w-2/5 mx-auto my-16" />
+      <div className="bg-white h-0.5 w-2/5 mx-auto my-16 mb-24" />
       <Blogs />
     </div>
   );

@@ -1,45 +1,63 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef } from "react";
+import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import LinkedIn from "../../images/linkedin.png";
 import Medium from "../../images/medium.png";
 import "../../App.css";
+import Loading from "../../images/loading.png";
+
 import TextEditor from "./widget/text_editor";
 import "react-quill/dist/quill.snow.css";
 
 const colors = ["#DB3C3C", "#164EA1", "#16A180"];
 
 const NewSubject = () => {
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
-  const [image, setImage] = useState(null);
-  const [imageName, setImageName] = useState("");
-  const [tag, setTag] = useState([]);
-  const [Link1, setLink1] = useState("");
-  const [Link2, setLink2] = useState("");
-  const [isChecked1, setIsChecked1] = useState(false);
-  const [isChecked2, setIsChecked2] = useState(false);
-  const [colorIndex, setColorIndex] = useState(0);
-  const [publishDate, setPublishDate] = useState("");
+  const [formState, setFormState] = useState({
+    title: "",
+    body: "",
+    image: null,
+    imageName: "",
+    tags: [],
+    descreption: "",
+    Link1: "",
+    Link2: "",
+    isChecked1: false,
+    isChecked2: false,
+    colorIndex: 0,
+    publishDate: "",
+    loading: false,
+    imageLoading: false,
+  });
 
   const navigate = useNavigate();
   const location = useLocation();
   const previousBlogs = location.state?.blogs || [];
-  const fileInputRef = React.useRef(null);
+  const fileInputRef = useRef(null);
 
-  const toggleCheckbox1 = () => {
-    setIsChecked1(!isChecked1);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormState((prevState) => ({ ...prevState, [name]: value }));
   };
-  const toggleCheckbox2 = () => {
-    setIsChecked2(!isChecked2);
+
+  const toggleCheckbox = (checkboxName) => {
+    setFormState((prevState) => ({
+      ...prevState,
+      [checkboxName]: !prevState[checkboxName],
+    }));
   };
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setImageName(file.name);
+      setFormState((prevState) => ({ ...prevState, imageLoading: true })); // Set image loading state to true
       const reader = new FileReader();
       reader.onloadend = () => {
-        setImage(reader.result);
+        setFormState((prevState) => ({
+          ...prevState,
+          image: reader.result,
+          imageName: file.name,
+          imageLoading: false,
+        }));
       };
       reader.readAsDataURL(file);
     }
@@ -49,42 +67,49 @@ const NewSubject = () => {
     fileInputRef.current.click();
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const publishDate = getCurrentDate();
+
+    setFormState((prevState) => ({ ...prevState, loading: true }));
+
     const newBlog = {
-      title,
-      body,
-      image,
-      tag,
-      isChecked1,
-      isChecked2,
-      Link1,
-      Link2,
-      publishDate,
+      ...formState,
+      publishDate: getCurrentDate(),
     };
 
-    navigate("/blogs", { state: { blogs: [...previousBlogs, newBlog] } });
-  };
-
-  const addTag = () => {
-    if (tag.length < 3) {
-      const newColor = colors[colorIndex];
-      setTag([...tag, { value: "NewTag", color: newColor }]);
-      setColorIndex((prevIndex) => (prevIndex + 1) % colors.length);
+    try {
+      await axios.post("http://localhost:5000/api/new_subject", newBlog);
+      navigate("/blogs", { state: { blogs: [...previousBlogs, newBlog] } });
+    } catch (error) {
+      console.error("Error adding new subject:", error);
+    } finally {
+      setFormState((prevState) => ({ ...prevState, loading: false }));
     }
   };
 
-  const deleteTags = (index) => {
-    const removetag = [...tag];
-    removetag.splice(index, 1);
-    setTag(removetag);
+  const addTag = () => {
+    if (formState.tags.length < 3) {
+      const newColor = colors[formState.colorIndex];
+      setFormState((prevState) => ({
+        ...prevState,
+        tags: [...prevState.tags, { value: "NewTag", color: newColor }],
+        colorIndex: (prevState.colorIndex + 1) % colors.length,
+      }));
+    }
+  };
+
+  const deleteTag = (index) => {
+    setFormState((prevState) => {
+      const newTags = [...prevState.tags];
+      newTags.splice(index, 1);
+      return { ...prevState, tags: newTags };
+    });
   };
 
   const handleTagChange = (index, event) => {
-    const newTag = [...tag];
-    newTag[index].value = event.target.value;
-    setTag(newTag);
+    const newTags = [...formState.tags];
+    newTags[index].value = event.target.value;
+    setFormState((prevState) => ({ ...prevState, tags: newTags }));
   };
 
   const getCurrentDate = () => {
@@ -102,22 +127,21 @@ const NewSubject = () => {
         <input
           className="my-5 w-full text-2xl border border-gray-300 rounded-lg p-2 focus:outline-none ring-2 ring-slate-200 focus:ring-2 focus:ring-slate-600"
           type="text"
+          name="title"
           placeholder="Title"
           required
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          value={formState.title}
+          onChange={handleChange}
         />
         <label className="flex text-3xl text-white mb-5">Subject:</label>
-        <TextEditor onChange={setBody} value={body} />
+        <TextEditor
+          onChange={(value) => setFormState({ ...formState, body: value })}
+          value={formState.body}
+        />
         <div className="flex justify-evenly items-center my-10 p-1 w-72 mx-auto text-2xl bg-white rounded-lg ">
-          {imageName ? (
-            <label className="text-2xl truncate text-black">{imageName}</label>
-          ) : (
-            <label className="text-2xl truncate text-black">
-              No file Chosen
-            </label>
-          )}
-
+          <label className="text-2xl truncate text-black">
+            {formState.imageName || "No file Chosen"}
+          </label>
           <input
             ref={fileInputRef}
             className="hidden"
@@ -133,35 +157,42 @@ const NewSubject = () => {
             Upload
           </button>
         </div>
-        {image && (
+
+        {formState.imageLoading ? (
           <img
-            src={image}
+            src={Loading}
+            alt="Loading"
+            className="my-10 animate-spin w-10 mx-auto"
+          />
+        ) : formState.image ? (
+          <img
+            src={formState.image}
             alt="Uploaded"
             className="my-10 mx-auto w-72 rounded-roundedButt"
           />
-        )}
+        ) : null}
         <div>
           <button
             type="button"
             onClick={addTag}
-            className="text-white text-4xl "
+            className="text-white text-4xl"
           >
             +Tag
           </button>
-          <div className="flex justify-center items-center gap-5 my-10">
-            {tag.map((tag, index) => (
+          <div className="flex justify-center items-center gap-5 my-5">
+            {formState.tags.map((tag, index) => (
               <div key={index} className="mt-2">
                 <input
                   type="text"
                   value={tag.value}
                   onChange={(event) => handleTagChange(index, event)}
-                  className=" w-full rounded-lg text-center text-white focus:outline-none text-2xl"
+                  className="w-full rounded-lg text-center text-white focus:outline-none text-2xl"
                   style={{ backgroundColor: tag.color }}
                 />
                 <button
-                  onClick={() => deleteTags(index)}
+                  onClick={() => deleteTag(index)}
                   type="button"
-                  className=" text-red-400 mt-3"
+                  className="text-red-400 mt-3"
                 >
                   ❌
                 </button>
@@ -169,67 +200,97 @@ const NewSubject = () => {
             ))}
           </div>
         </div>
-        <div>
+        <label className="flex text-3xl text-white">Descreption:</label>
+        <textarea
+          className="my-5 w-full text-2xl border min-h-32 border-gray-300 rounded-lg p-2 focus:outline-none ring-2 ring-slate-200 focus:ring-2 focus:ring-slate-600"
+          type="textarea"
+          name="descreption"
+          placeholder="Descreption"
+          required
+          value={formState.descreption}
+          onChange={handleChange}
+        />
+        {/* <div>
           <p className="text-white text-4xl mt-10">Available on:</p>
-
-          <div className="flex justify-between items-center">
-            <div className="flex justify-start items-center ease-in-out duration-500 hover:opacity-50">
-              <img
-                className="mr-4 my-5 w-10 rounded-full"
-                alt={LinkedIn}
-                src={LinkedIn}
-              />
-              <p className="text-white text-3xl">LinkedIn</p>
-            </div>
-            <input
-              onClick={toggleCheckbox1}
-              value={isChecked1}
-              type="checkbox"
-              className="h-6 w-6"
-            />
-          </div>
-
-          <input
-            style={{ display: isChecked1 ? "block" : "none" }}
-            className="my-5 w-full text-2xl border border-gray-300 rounded-lg p-2 focus:outline-none ring-2 ring-slate-200 focus:ring-2 focus:ring-slate-600"
-            type="text"
-            placeholder={`https://LinkedIn.com`}
-            value={Link1}
-            onChange={(e) => setLink1(e.target.value)}
+          <PlatformCheckbox
+            platform="LinkedIn"
+            icon={LinkedIn}
+            isChecked={formState.isChecked1}
+            onCheckboxToggle={() => toggleCheckbox("isChecked1")}
+            link={formState.Link1}
+            onLinkChange={handleChange}
+            isVisible={formState.isChecked1}
           />
-          <div className="flex justify-between items-center">
-            <div className="flex justify-start items-center ease-in-out duration-500 hover:opacity-50">
-              <img
-                className="mr-4 my-5 w-10 rounded-full"
-                alt={Medium}
-                src={Medium}
-              />
-              <p className="text-white text-3xl">Medium</p>
-            </div>
-            <input
-              onClick={toggleCheckbox2}
-              value={isChecked2}
-              type="checkbox"
-              className="h-6 w-6"
-            />
-          </div>
-
-          <input
-            style={{ display: isChecked2 ? "block" : "none" }}
-            className="my-5 w-full text-2xl border border-gray-300 rounded-lg p-2 focus:outline-none ring-2 ring-slate-200 focus:ring-2 focus:ring-slate-600"
-            type="text"
-            placeholder={`https://Medium.com`}
-            value={Link2}
-            onChange={(e) => setLink2(e.target.value)}
+          <PlatformCheckbox
+            platform="Medium"
+            icon={Medium}
+            isChecked={formState.isChecked2}
+            onCheckboxToggle={() => toggleCheckbox("isChecked2")}
+            link={formState.Link2}
+            onLinkChange={handleChange}
+            isVisible={formState.isChecked2}
           />
-        </div>
-        {publishDate && <p className="text-3xl text-white">{publishDate}</p>}
-        <button className="text-white text-2xl bg-customPurble rounded-xl p-3 w-full mb-10 ">
-          Publish
+        </div> */}
+        {formState.publishDate && (
+          <p className="text-3xl text-white">{formState.publishDate}</p>
+        )}
+        <button
+          className="text-white text-2xl bg-customPurble rounded-xl p-3 w-full mb-10"
+          type="submit"
+          disabled={formState.loading} // Disable the button when loading
+        >
+          {formState.loading ? (
+            <img
+              src={Loading}
+              alt="Loading..."
+              className="animate-spin w-10 mx-auto"
+            />
+          ) : (
+            "Publish"
+          )}
         </button>
       </form>
     </div>
   );
 };
+
+const PlatformCheckbox = ({
+  platform,
+  icon,
+  isChecked,
+  onCheckboxToggle,
+  link,
+  onLinkChange,
+  isVisible,
+}) => (
+  <>
+    <div className="flex justify-between items-center">
+      <div className="flex justify-start items-center ease-in-out duration-500 hover:opacity-50">
+        <img
+          className="mr-4 my-5 w-10 rounded-full"
+          alt={platform}
+          src={icon}
+        />
+        <p className="text-white text-3xl">{platform}</p>
+      </div>
+      <input
+        onClick={onCheckboxToggle}
+        type="checkbox"
+        checked={isChecked}
+        className="h-6 w-6"
+      />
+    </div>
+    {isVisible && (
+      <input
+        name={platform === "LinkedIn" ? "Link1" : "Link2"}
+        className="my-5 w-full text-2xl border border-gray-300 rounded-lg p-2 focus:outline-none ring-2 ring-slate-200 focus:ring-2 focus:ring-slate-600"
+        type="text"
+        placeholder={`https://${platform}.com`}
+        value={link}
+        onChange={onLinkChange}
+      />
+    )}
+  </>
+);
 
 export default NewSubject;

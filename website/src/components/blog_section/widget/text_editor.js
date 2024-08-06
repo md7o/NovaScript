@@ -41,7 +41,7 @@ const TextEditor = ({ value, onChange }) => {
 
   return (
     <ReactQuill
-      className="bg-white"
+      className="bg-white "
       value={value}
       onChange={onChange}
       modules={modules}

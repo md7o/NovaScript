@@ -21,13 +21,13 @@ const Subject = () => {
         {blog.title}
       </h1>
       <div className="flex gap-1 mx-auto mt-5 ">
-        {blog.tag.map((tag, index) => (
+        {(blog.tags || []).map((tag, index) => (
           <div
             key={index}
             style={{ backgroundColor: tag.color }}
-            className="text-white text-md rounded-md px-5"
+            className="text-white text-3xl rounded-xl px-5"
           >
-            <span>{tag.value}</span>
+            <p>{tag.value}</p>
           </div>
         ))}
       </div>

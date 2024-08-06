@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import linkedin from "../../images/linkedin.png";
 import github from "../../images/github.png";
 import mail from "../../images/mail.png";
@@ -40,6 +41,30 @@ const Header = () => {
 
   return (
     <div className="block w-2/5 mx-auto bg-customBG">
+      <div className="flex justify-center items-center text-white text-2xl gap-10 mt-10">
+        <Link
+          to={"/mobileapps"}
+          rel="noopener noreferrer"
+          className="hover:underline hover:underline-offset-5 hover:duration-500 hover:opacity-65"
+        >
+          Home
+        </Link>
+        <Link
+          to={"/blogs"}
+          rel="noopener noreferrer"
+          className="hover:underline hover:underline-offset-5 hover:duration-500 hover:opacity-65"
+        >
+          Blogs
+        </Link>
+        <Link
+          to={"/mobileapps"}
+          rel="noopener noreferrer"
+          className="hover:underline hover:underline-offset-5 hover:duration-500 hover:opacity-65"
+        >
+          Apps
+        </Link>
+      </div>
+
       <h1 className="flex justify-end text-5xl text-white  mt-28 mb-10 font-bold">
         محمد الحراكي
       </h1>
