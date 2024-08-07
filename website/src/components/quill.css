@@ -33,4 +33,16 @@
 .ql-editor {
   margin: 0;
   padding: 0;
+  background-color: #ffffff;
+  min-height: 199px;
+  color: #101114;
+  padding: 5px;
+}
+
+.ql-editor p,
+h1,
+h2 {
+  color: black;
+  padding-left: 10px;
+  padding-right: 10px;
 }

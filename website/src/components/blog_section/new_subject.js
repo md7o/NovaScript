@@ -170,7 +170,9 @@ const NewSubject = () => {
             alt="Uploaded"
             className="my-10 mx-auto w-72 rounded-roundedButt"
           />
-        ) : null}
+        ) : (
+          <p className="my-16 opacity-50">best resolution: 1920 x 1080</p>
+        )}
         <div>
           <button
             type="button"

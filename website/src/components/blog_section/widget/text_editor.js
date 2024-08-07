@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css"; // Import Quill styles
-import "highlight.js/styles/vs2015.css"; // Import Highlight.js theme
+import "react-quill/dist/quill.snow.css";
+import "highlight.js/styles/vs2015.css";
+import "../../quill.css";
+
 import hljs from "highlight.js";
 const TextEditor = ({ value, onChange }) => {
   useEffect(() => {
@@ -12,7 +14,7 @@ const TextEditor = ({ value, onChange }) => {
 
   const modules = {
     toolbar: [
-      [{ header: "1" }, { header: "2" }, { font: [] }],
+      [{ header: "1" }, { header: "2" }, { header: "3" }],
       [{ list: "ordered" }, { list: "bullet" }],
       ["bold", "italic", "underline"],
       ["link", "image"], // Add image button to toolbar
@@ -25,7 +27,6 @@ const TextEditor = ({ value, onChange }) => {
 
   const formats = [
     "header",
-    "font",
     "list",
     "bullet",
     "bold",
@@ -41,7 +42,7 @@ const TextEditor = ({ value, onChange }) => {
 
   return (
     <ReactQuill
-      className="bg-white "
+      className=""
       value={value}
       onChange={onChange}
       modules={modules}

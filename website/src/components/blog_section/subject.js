@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "../../App.css";
 import "../quill.css";
 import { useLocation } from "react-router-dom";
-import "highlight.js/styles/vs2015.css"; // Import Highlight.js theme
+import "highlight.js/styles/vs2015.css";
 import hljs from "highlight.js";
 
 const Subject = () => {

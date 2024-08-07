@@ -3,11 +3,11 @@ import NSLogo from "../../../images/Nova Script Logo.png";
 
 const BlogHeader = () => {
   return (
-    <div className="flex justify-around items-center text-white text-2xl gap-10 mt-10">
+    <div className="sticky top-0 flex justify-around items-center text-white mt-5">
       <img
         to={"/mobileapps"}
         rel="noopener noreferrer"
-        className="w-40 hover:underline hover:underline-offset-5 hover:duration-500 hover:opacity-65"
+        className="w-32 hover:underline hover:underline-offset-5 hover:duration-500 hover:opacity-65"
         src={NSLogo}
         alt={NSLogo}
       />
@@ -15,7 +15,7 @@ const BlogHeader = () => {
         to="/blogs/newsubject"
         // state={{ blogs }}
         rel="noopener noreferrer"
-        className="hover:underline hover:underline-offset-5 hover:duration-500 hover:opacity-65 hover:ease-in-out"
+        className="hover:underline hover:underline-offset-5 hover:duration-500 hover:opacity-65 hover:ease-in-out text-xl"
       >
         Create New Blog +
       </Link>
