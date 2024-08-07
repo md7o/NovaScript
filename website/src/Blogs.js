@@ -48,7 +48,7 @@ const Blogs = () => {
     <div className="BlogBG">
       <BlogHeader />
 
-      <h1 className="text-white text-center text-5xl font-bold mt-24">
+      <h1 className="text-center text-5xl font-bold mt-24">
         صفحة المدونات
       </h1>
 
@@ -182,7 +182,7 @@ const Blogs = () => {
           ))}
         </div>
       ) : (
-        <p className="text-white text-center text-2xl mt-16">
+        <p className="text-center text-2xl mt-16">
           No submitted data
         </p>
       )}
