@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Loading from "./images/loading.png";
-
+import ThemeProvider from "./theme_context.js";
 const Home = React.lazy(() => import("./Home"));
 const MobileApps = React.lazy(() => import("./MobileApps.js"));
 const Blogs = React.lazy(() => import("./Blogs"));
@@ -20,7 +20,7 @@ const CarWave = React.lazy(() => import("./components/apps_view/CarWave.js"));
 function App() {
   AOS.init();
   return (
-    <div>
+    <ThemeProvider>
       <Suspense
         fallback={
           <img
@@ -42,7 +42,7 @@ function App() {
           <Route path="/mobileapps/litloom" element={<LitLoom />} />
         </Routes>
       </Suspense>
-    </div>
+    </ThemeProvider>
   );
 }
 

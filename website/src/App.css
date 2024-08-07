@@ -1,9 +1,21 @@
 /* index.css or App.css */
 @import "highlight.js/styles/github.css"; /* Or any other theme you prefer */
 
+:root {
+  --bg-color: #101114;
+  --text-color: #ffffff;
+}
+
 body {
-  background-color: #101114;
+  background-color: var(--bg-color);
   font-family: cairo;
+}
+
+h1,
+p,
+a,
+span {
+  color: var(--text-color);
 }
 
 .hlao {

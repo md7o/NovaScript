@@ -5,7 +5,7 @@ import GooglePlay from "../../images/google-play.png";
 const PreviousApps = () => {
   return (
     <div className="block w-2/5 mx-auto">
-      <h1 className="flex justify-end text-4xl text-white  mt-16 mb-14 font-bold pr-10">
+      <h1 className="flex justify-end text-4xl mt-16 mb-14 font-bold pr-10">
         : أعمال سابقة
       </h1>
       <div className="flex justify-end items-center">
@@ -31,7 +31,7 @@ const PreviousApps = () => {
             src={GooglePlay}
           />
         </a>
-        <p className="select-none text-white text-4xl cursor-pointer ease-in-out duration-500 hover:text-gray-400 mx-10">
+        <p className="select-none  text-4xl cursor-pointer ease-in-out duration-500 hover:text-gray-400 mx-10">
           ( LitLoom ) تطبيق الكتب
         </p>
         <img
@@ -64,7 +64,7 @@ const PreviousApps = () => {
             src={GooglePlay}
           />
         </a>
-        <p className="select-none text-white text-4xl cursor-pointer ease-in-out duration-500 hover:text-gray-400 mx-10">
+        <p className="select-none  text-4xl cursor-pointer ease-in-out duration-500 hover:text-gray-400 mx-10">
           ( Car Wave ) تطبيق السيارات
         </p>
         <img
