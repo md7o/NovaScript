@@ -121,9 +121,9 @@ const NewSubject = () => {
 
   return (
     <div className="text-center max-w-lgMw mx-auto">
-      <h1 className="text-4xl text-white my-10">Add a new subject</h1>
+      <h1 className="text-4xl  my-10">Add a new subject</h1>
       <form onSubmit={handleSubmit}>
-        <label className="flex text-3xl text-white">Subject Title:</label>
+        <label className="flex text-3xl ">Subject Title:</label>
         <input
           className="my-5 w-full text-2xl border border-gray-300 rounded-lg p-2 focus:outline-none ring-2 ring-slate-200 focus:ring-2 focus:ring-slate-600"
           type="text"
@@ -133,7 +133,7 @@ const NewSubject = () => {
           value={formState.title}
           onChange={handleChange}
         />
-        <label className="flex text-3xl text-white mb-5">Subject:</label>
+        <label className="flex text-3xl mb-5">Subject:</label>
         <TextEditor
           onChange={(value) => setFormState({ ...formState, body: value })}
           value={formState.body}
@@ -174,11 +174,7 @@ const NewSubject = () => {
           <p className="my-16 opacity-50">best resolution: 1920 x 1080</p>
         )}
         <div>
-          <button
-            type="button"
-            onClick={addTag}
-            className="text-white text-4xl"
-          >
+          <button type="button" onClick={addTag} className=" text-4xl">
             +Tag
           </button>
           <div className="flex justify-center items-center gap-5 my-5">
@@ -202,7 +198,7 @@ const NewSubject = () => {
             ))}
           </div>
         </div>
-        <label className="flex text-3xl text-white">Descreption:</label>
+        <label className="flex text-3xl">Descreption:</label>
         <textarea
           className="my-5 w-full text-2xl border min-h-32 border-gray-300 rounded-lg p-2 focus:outline-none ring-2 ring-slate-200 focus:ring-2 focus:ring-slate-600"
           type="textarea"

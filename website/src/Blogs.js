@@ -7,11 +7,15 @@ import Medium from "./images/medium.png";
 import Trash from "./images/trash-bin.png";
 import Edit from "./images/pen.png";
 import view from "./images/view.png";
+import { useTheme } from "./theme_context.js";
+
 import "./App.css";
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
   const [click, setClick] = useState(0);
+
+  const { isDarkTheme } = useTheme();
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -48,9 +52,7 @@ const Blogs = () => {
     <div className="BlogBG">
       <BlogHeader />
 
-      <h1 className="text-center text-5xl font-bold mt-24">
-        صفحة المدونات
-      </h1>
+      <h1 className="text-center text-5xl font-bold mt-24">صفحة المدونات</h1>
 
       {/* <h1 className="text-white text-center text-5xl font-bold pt-5">
         Blogs Page
@@ -71,7 +73,9 @@ const Blogs = () => {
           {blogs.map((blog, index) => (
             <div
               key={index}
-              className="bg-SecondBG  3xl:w-2/4 xl:w-1/3 md:w-1/2 mx-auto rounded-roundedButt my-10"
+              className={` 3xl:w-2/4 xl:w-1/3 md:w-1/2 mx-auto rounded-roundedButt my-10 ${
+                isDarkTheme ? "light-box" : "dark-box"
+              } `}
             >
               <Link
                 to={{
@@ -83,9 +87,7 @@ const Blogs = () => {
               >
                 <div className="2xl:p-14 p-7 ">
                   <div className="flex">
-                    <p className="text-white 2xl:text-5xl text-4xl">
-                      {blog.title}
-                    </p>
+                    <p className=" 2xl:text-5xl text-4xl">{blog.title}</p>
                     <button
                       onClick={(e) => {
                         e.preventDefault();
@@ -116,7 +118,7 @@ const Blogs = () => {
                   <p className="text-2xl text-zinc-400 tracking-widest my-5">
                     {blog.publishDate}
                   </p>
-                  <div className="flex gap-5 mx-auto">
+                  <div className="text-white flex gap-5 mx-auto">
                     {(blog.tags || []).map((tag, index) => (
                       <div
                         key={index}
@@ -129,7 +131,7 @@ const Blogs = () => {
                   </div>
                   <div className="flex justify-start items-center gap-2 my-5">
                     <img alt={view} src={view} className="w-8" />
-                    <p className="text-white text-2xl">View: {click}</p>
+                    <p className=" text-2xl">View: {click}</p>
                   </div>
 
                   <p className="text-neutral-500 text-xl 3xl:w-biggW break-words">
@@ -182,9 +184,7 @@ const Blogs = () => {
           ))}
         </div>
       ) : (
-        <p className="text-center text-2xl mt-16">
-          No submitted data
-        </p>
+        <p className="text-center text-2xl mt-16">No submitted data</p>
       )}
     </div>
   );

@@ -12,7 +12,7 @@
   color: #d8dee9;
   font-size: 18px;
   padding: 20px;
-  margin: 20px 0 20px 0; /*top right bottom left*/
+  margin: 20px 10px 20px 10px; /*top right bottom left*/
   border-radius: 5px;
   overflow: auto;
   font-family: "Consolas", Courier, monospace;
