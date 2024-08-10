@@ -1,17 +1,16 @@
-from flask import Blueprint,request, jsonify
-from flask_cors import CORS
+from flask import Blueprint, request, jsonify
 
 blog = Blueprint('blog', __name__)
-CORS(blog)
 
+# List to store blogs
 blogs = []
 
 @blog.route('/api/new_subject', methods=['POST'])
 def new_subject():
     data = request.json
-    blogs.blogend(data)
-    print(data)
-    return jsonify({"message": "Subject added successfully!"}), 200,
+    blogs.append(data)  # Append new blog data
+    print("Received data:", data)
+    return jsonify({"message": "Subject added successfully!"}), 200
 
 @blog.route('/api/blogs', methods=['GET'])
 def get_blogs():

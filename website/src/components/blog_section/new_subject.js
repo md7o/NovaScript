@@ -60,6 +60,8 @@ const NewSubject = () => {
         }));
       };
       reader.readAsDataURL(file);
+    } else {
+      alert("Please select a valid image file (JPEG, PNG, etc.) under 5MB.");
     }
   };
 
@@ -69,7 +71,6 @@ const NewSubject = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     setFormState((prevState) => ({ ...prevState, loading: true }));
 
     const newBlog = {
@@ -78,10 +79,11 @@ const NewSubject = () => {
     };
 
     try {
-      await axios.post("http://localhost:5000/api/new_subject", newBlog);
+      await axios.post("http://localhost:5000/blog/api/new_subject", newBlog);
       navigate("/blogs", { state: { blogs: [...previousBlogs, newBlog] } });
     } catch (error) {
       console.error("Error adding new subject:", error);
+      alert("Failed to add new subject. Please try again.");
     } finally {
       setFormState((prevState) => ({ ...prevState, loading: false }));
     }

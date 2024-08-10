@@ -59,14 +59,14 @@ const FooterPart = () => {
         <div className="bg-white opacity-15 h-line mx-auto mt-24" />
         <div className="flex justify-end items-center gap-8 mt-5">
           {Logo.map((logo, index) => (
-            <spna
+            <p
               className=" cursor-pointer opacity-80 text-white text-lg hover:opacity-60 hover:duration-150"
               src={logo.alt}
               key={index}
               onClick={() => handleClick(logo.link)}
             >
               {logo.alt}
-            </spna>
+            </p>
           ))}
         </div>
       </div>

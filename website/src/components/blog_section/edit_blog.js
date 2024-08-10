@@ -73,7 +73,10 @@ const EditBlog = () => {
     };
 
     try {
-      await axios.put(`http://localhost:5000/api/blogs/${index}`, updatedBlog);
+      await axios.put(
+        `http://localhost:5000/blog/api/blogs/${index}`,
+        updatedBlog
+      );
       navigate("/blogs");
     } catch (error) {
       console.error("Error updating blog:", error);

@@ -20,7 +20,9 @@ const Blogs = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/blogs");
+        const response = await axios.get(
+          "http://localhost:5000/blog/api/blogs"
+        );
         setBlogs(response.data);
       } catch (error) {
         console.error("Error fetching blogs:", error);
@@ -33,10 +35,9 @@ const Blogs = () => {
   const removeBlog = async (index) => {
     try {
       const response = await axios.delete(
-        `http://localhost:5000/api/blogs/${index}`
+        `http://localhost:5000/blog/api/blogs/${index}`
       );
       if (response.status === 200) {
-        // Successfully deleted, update the state
         setBlogs((prevBlogs) => prevBlogs.filter((_, i) => i !== index));
       }
     } catch (error) {

@@ -5,8 +5,6 @@ import DarkMode from "../../../images/moon.png";
 import LightMode from "../../../images/brightness.png";
 import { useTheme } from "../../../theme_context";
 const BlogHeader = () => {
-
-
   const [isIcon, setIsIcon] = useState(true);
   const { isDarkTheme, toggleTheme } = useTheme();
 
@@ -24,17 +22,17 @@ const BlogHeader = () => {
         alt={NSLogo}
       />
       <div className="flex justify-center items-center gap-8">
-      <Link
-        to="/blogs/newsubject"
-        // state={{ blogs }}
-        rel="noopener noreferrer"
-        className="hover:underline hover:underline-offset-5 hover:duration-500 hover:opacity-65 hover:ease-in-out text-xl "
-      >
-        Create New Blog +
-      </Link>
-      <button onClick={handleTheme}>
+        <Link
+          to="/blogs/newsubject"
+          // state={{ blogs }}
+          rel="noopener noreferrer"
+          className="hover:underline hover:underline-offset-5 hover:duration-500 hover:opacity-65 hover:ease-in-out text-xl "
+        >
+          Create New Blog +
+        </Link>
+        <button onClick={handleTheme}>
           <img
-            className="w-7 hover:underline hover:underline-offset-5 hover:duration-500 hover:opacity-65 hover:animate-pulse"
+            className="w-7 hover:underline hover:underline-offset-5 hover:duration-500 hover:opacity-65 "
             src={isDarkTheme ? LightMode : DarkMode}
             alt="Toggle"
           />
