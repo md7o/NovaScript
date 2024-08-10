@@ -5,6 +5,8 @@ import "react-quill/dist/quill.snow.css";
 import TextEditor from "./widget/text_editor";
 import "../../App.css";
 
+const colors = ["#DB3C3C", "#164EA1", "#16A180"];
+
 const EditBlog = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -16,6 +18,7 @@ const EditBlog = () => {
     blog.image ? "Image Uploaded" : ""
   );
   const [tags, setTags] = useState(blog.tags || []);
+  const [colorIndex, setColorIndex] = useState(0);
   const [descreption, setdescreption] = useState(blog.descreption || []);
   const [publishDate, setpublishDate] = useState(blog.publishDate || []);
 
@@ -28,6 +31,14 @@ const EditBlog = () => {
         setImage(reader.result);
       };
       reader.readAsDataURL(file);
+    }
+  };
+
+  const addTag = () => {
+    if (tags.length < 3) {
+      const newColor = colors[colorIndex];
+      setTags([...tags, { value: "NewTag", color: newColor }]);
+      setColorIndex((colorIndex + 1) % colors.length);
     }
   };
 
@@ -71,9 +82,9 @@ const EditBlog = () => {
 
   return (
     <div className="text-center max-w-lgMw mx-auto">
-      <h1 className="text-4xl text-white my-10">Edit Blog</h1>
+      <p className="text-4xl my-10">Edit Blog</p>
       <form onSubmit={handleSubmit}>
-        <label className="flex text-3xl text-white">Subject Title:</label>
+        <label className="flex text-3xl ">Subject Title:</label>
         <input
           className="my-5 w-full text-2xl border border-gray-300 rounded-lg p-2 focus:outline-none ring-2 ring-slate-200 focus:ring-2 focus:ring-slate-600"
           type="text"
@@ -82,7 +93,7 @@ const EditBlog = () => {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
-        <label className="flex text-3xl text-white mb-5">Subject:</label>
+        <label className="flex text-3xl  mb-5">Subject:</label>
         <TextEditor onChange={setBody} value={body} />
         <div className="flex justify-evenly items-center my-10 p-1 w-72 mx-auto text-2xl bg-white rounded-lg">
           {imageName ? (
@@ -113,6 +124,9 @@ const EditBlog = () => {
             className="my-10 mx-auto w-72 rounded-roundedButt"
           />
         )}
+        <button type="button" onClick={addTag} className=" text-4xl">
+          +Tag
+        </button>
         <div className="flex justify-center items-center gap-5 my-10">
           {tags.map((tag, index) => (
             <div key={index} className="mt-2">
@@ -133,7 +147,7 @@ const EditBlog = () => {
             </div>
           ))}
         </div>
-        <label className="flex text-3xl text-white">Descreption:</label>
+        <label className="flex text-3xl ">Descreption:</label>
         <textarea
           className="my-5 w-full text-2xl border min-h-32 border-gray-300 rounded-lg p-2 focus:outline-none ring-2 ring-slate-200 focus:ring-2 focus:ring-slate-600"
           type="textarea"

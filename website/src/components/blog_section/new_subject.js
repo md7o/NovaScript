@@ -121,7 +121,7 @@ const NewSubject = () => {
 
   return (
     <div className="text-center max-w-lgMw mx-auto">
-      <h1 className="text-4xl  my-10">Add a new subject</h1>
+      <p className="text-4xl  my-10">Add a new subject</p>
       <form onSubmit={handleSubmit}>
         <label className="flex text-3xl ">Subject Title:</label>
         <input

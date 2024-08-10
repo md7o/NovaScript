@@ -5,9 +5,12 @@ import "highlight.js/styles/vs2015.css";
 import "../../quill.css";
 
 import hljs from "highlight.js";
+
 const TextEditor = ({ value, onChange }) => {
   useEffect(() => {
-    document.querySelectorAll("pre.ql-syntax").forEach((block) => {
+    const codeBlocks = document.querySelectorAll("pre.ql-syntax");
+
+    codeBlocks.forEach((block) => {
       hljs.highlightElement(block);
     });
   }, [value]);
@@ -18,7 +21,7 @@ const TextEditor = ({ value, onChange }) => {
       [{ list: "ordered" }, { list: "bullet" }],
       ["bold", "italic", "underline"],
       ["link", "image"], // Add image button to toolbar
-      ["code-block"],
+      ["blockquote", "code-block"],
       [{ color: [] }, { background: [] }],
       [{ align: [] }],
       ["clean"],
@@ -35,6 +38,7 @@ const TextEditor = ({ value, onChange }) => {
     "link",
     "image",
     "code-block",
+    "blockquote",
     "color",
     "background",
     "align",
@@ -42,7 +46,6 @@ const TextEditor = ({ value, onChange }) => {
 
   return (
     <ReactQuill
-      className=""
       value={value}
       onChange={onChange}
       modules={modules}

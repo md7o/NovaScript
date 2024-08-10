@@ -12,7 +12,9 @@ body {
 h1,
 p,
 a,
-span {
+span,
+label,
+button {
   color: var(--text-color);
 }
 
