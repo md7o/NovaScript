@@ -16,6 +16,9 @@ const Subject = React.lazy(() =>
 const Edit = React.lazy(() => import("./components/blog_section/edit_blog"));
 const LitLoom = React.lazy(() => import("./components/apps_view/LitLoom.js"));
 const CarWave = React.lazy(() => import("./components/apps_view/CarWave.js"));
+const LoginAdmin = React.lazy(() =>
+  import("./components/blog_section/login_admin.js")
+);
 
 function App() {
   AOS.init();
@@ -36,7 +39,7 @@ function App() {
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/blogs/subject" element={<Subject />} />
           <Route path="/blogs/edit" element={<Edit />} />
-
+          <Route path="/blogs/login_admin" element={<LoginAdmin />} />
           <Route path="/blogs/newsubject" element={<NewSubject />} />
           <Route path="/mobileapps/carwave" element={<CarWave />} />
           <Route path="/mobileapps/litloom" element={<LitLoom />} />
