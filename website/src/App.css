@@ -19,11 +19,11 @@ button {
 }
 
 .dark-box {
-  background-color: #dcdcdc; /* Dark mode box color */
+  background-color: #e5e5e5; /* Dark mode box color */
 }
 
 .light-box {
-  background-color: #0b0b0b; /* Light mode box color */
+  background-color: #0e0e0ee1; /* Light mode box color */
 }
 
 .hlao {
@@ -47,4 +47,8 @@ button {
 
 .scroll-hidden {
   scrollbar-width: none;
+}
+
+.flip {
+  transform: rotateX(3.142rad);
 }

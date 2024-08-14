@@ -6,34 +6,46 @@ const Topics = () => {
   return (
     <div className="block w-2/5 mx-auto">
       <div className="flex justify-between items-center px-5 mb-10">
+        <p className="flex justify-end text-4xl font-light">Blogs</p>
         <Link
           to={"/blogs"}
           rel="noopener noreferrer"
-          className="flex justify-end text-2xl font-bold cursor-pointer hover:duration-500 hover:opacity-65"
+          className="flex justify-end text-2xl font-light cursor-pointer hover:duration-500 hover:opacity-65"
         >
-          ◀️ إستكشف المزيد
+          Explore more &gt;
         </Link>
-        <h1 className="flex justify-end text-4xl font-bold">: بعض المدونات</h1>
       </div>
-      <div className="flex justify-center items-center gap-x-16">
-        <a
-          className="hover:opacity-80 duration-300 ease-in-out"
-          href="https://medium.com/@md7ohe/flutter-bottom-navigation-bar-40767d374af8"
-        >
-          <img alt="medium" className="rounded-defaultRounded" src={Blog1} />
-          <p className=" text-3xl text-center mt-3 mb-14">
-            Bottom Navigation Bar
-          </p>
-        </a>
-        <a
-          className="hover:opacity-80 duration-300 ease-in-out"
-          href="https://medium.com/@md7ohe/gridview-with-a-modern-design-d82c66d2fd60"
-        >
-          <img alt="medium" className="rounded-defaultRounded" src={Blog2} />
-          <p className=" text-3xl text-center mt-3 mb-14">
-            GridView with modern design
-          </p>
-        </a>
+      <div className="2xl:flex justify-center items-center gap-x-5">
+        <div className="duration-500 hover:bg-zinc-900 hover:rounded-roundedButt ">
+          <a
+            className="hover:opacity-80 duration-300 ease-in-out "
+            href="https://medium.com/@md7ohe/flutter-bottom-navigation-bar-40767d374af8"
+          >
+            <img
+              alt="medium"
+              className="rounded-roundedButt duration-500 hover:scale-90"
+              src={Blog1}
+            />
+            <p className="3xl:text-3xl text-2xl text text-center p-5 font-light">
+              Bottom Navigation Bar
+            </p>
+          </a>
+        </div>
+        <div className="duration-500 hover:bg-zinc-900 hover:rounded-roundedButt ">
+          <a
+            className="hover:opacity-80 duration-300 ease-in-out"
+            href="https://medium.com/@md7ohe/gridview-with-a-modern-design-d82c66d2fd60"
+          >
+            <img
+              alt="medium"
+              className="rounded-roundedButt duration-500 hover:scale-90"
+              src={Blog2}
+            />
+            <p className="3xl:text-3xl text-2xl text-center p-5 font-light">
+              GridView with modern design
+            </p>
+          </a>
+        </div>
       </div>
     </div>
   );

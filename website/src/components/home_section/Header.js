@@ -1,10 +1,5 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import linkedin from "../../images/linkedin.png";
-import github from "../../images/github.png";
-import mail from "../../images/mail.png";
-import twitter from "../../images/twitter.png";
-import whatsapp from "../../images/whatsapp.png";
 import NSLogo from "../../images/Nova Script Logo.png";
 import DarkMode from "../../images/moon.png";
 import LightMode from "../../images/brightness.png";
@@ -26,8 +21,8 @@ const Header = () => {
   };
 
   return (
-    <div className="sticky top-0 mx-auto" style={appStyles}>
-      <div className="sticky top-0 flex justify-around items-center text-2xl gap-10 mt-5">
+    <div className="sticky top-0" style={appStyles}>
+      <div className="flex justify-around items-center mt-5">
         <img
           to={"/"}
           rel="noopener noreferrer"
@@ -35,7 +30,7 @@ const Header = () => {
           src={NSLogo}
           alt={NSLogo}
         />
-        <div className="flex justify-between items-center text-2xl gap-10">
+        <div className="flex justify-between items-center text-2xl font-light gap-5">
           <Link
             to={"/"}
             rel="noopener noreferrer"
@@ -61,7 +56,7 @@ const Header = () => {
 
         <button onClick={handleTheme}>
           <img
-            className="w-7 hover:underline hover:underline-offset-5 hover:duration-500 hover:opacity-65 hover:animate-pulse"
+            className="w-7 ml-24 hover:underline hover:underline-offset-5 hover:duration-500 hover:opacity-65 hover:animate-pulse"
             src={isDarkTheme ? LightMode : DarkMode}
             alt="Toggle"
           />

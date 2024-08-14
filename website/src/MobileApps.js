@@ -6,14 +6,10 @@ import CarWaveHome from "./images/HomePageCarWave.png";
 const MobileApps = () => {
   return (
     <div className="">
-      <p className="text-6xl font-bold text-white text-center mt-16">
-        التطبيقات
-      </p>
+      <p className="text-6xl font-bold  text-center mt-16">التطبيقات</p>
       <div className="lg:flex lg:justify-center gap-60">
         <div>
-          <p className="text-5xl font-bold text-white text-center mt-16">
-            Car Wave
-          </p>
+          <p className="text-5xl font-bold  text-center mt-16">Car Wave</p>
           <Link to={"/mobileapps/carwave"}>
             <img
               className="rounded-defaultRounded mx-auto my-10 hover:opacity-80 duration-300 cursor-pointer"
@@ -31,9 +27,7 @@ const MobileApps = () => {
           </div>
         </div>
         <div>
-          <p className="text-5xl font-bold text-white text-center mt-16">
-            LitLooms
-          </p>
+          <p className="text-5xl font-bold  text-center mt-16">LitLooms</p>
           <Link to={"/mobileapps/litloom"}>
             <img
               className="rounded-defaultRounded my-10 mx-auto hover:opacity-80 duration-300 cursor-pointer"
