@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import BlogHeader from "./components/blog_section/widget/blog_header";
 import Github from "./images/linkedin.png";
@@ -14,6 +14,9 @@ import "./App.css";
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
   const [click, setClick] = useState(0);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const navigate = useNavigate();
 
   const { isDarkTheme } = useTheme();
 
@@ -29,8 +32,35 @@ const Blogs = () => {
       }
     };
 
+    const checkLoginStatus = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/admin/check_login",
+          { withCredentials: true }
+        );
+        setIsLoggedIn(response.data.logged_in);
+      } catch (error) {
+        console.error("Error checking login status:", error);
+      }
+    };
+
     fetchBlogs();
+    checkLoginStatus();
   }, []);
+
+  const handleLogout = async () => {
+    try {
+      await axios.post(
+        "http://localhost:5000/admin/logout",
+        {},
+        { withCredentials: true }
+      );
+      setIsLoggedIn(false);
+      navigate("/blogs/login_admin"); // Redirect to login page after logout
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
+  };
 
   const removeBlog = async (index) => {
     try {
@@ -69,6 +99,17 @@ const Blogs = () => {
       >
         add
       </button> */}
+      {isLoggedIn && (
+        <div>
+          <button
+            onClick={handleLogout}
+            className="text-white text-2xl rounded-xl px-5 mx-1 y-20"
+          >
+            Logout
+          </button>
+        </div>
+      )}
+
       {blogs.length > 0 ? (
         <div>
           {blogs.map((blog, index) => (
@@ -87,34 +128,39 @@ const Blogs = () => {
                 className="3xl:flex 3xl:flex-row flex flex-col-reverse justify-between 3xl:items-center"
               >
                 <div className="2xl:p-14 p-7 ">
-                  <div className="flex">
+                  <div className="flex gap-5">
                     <p className=" 2xl:text-5xl text-4xl">{blog.title}</p>
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        removeBlog(index);
-                      }}
-                    >
-                      <img
-                        className="mx-4 w-10 rounded-full"
-                        alt="Trash"
-                        src={Trash}
-                      />
-                    </button>
-                    <Link
-                      to={{
-                        pathname: "/blogs/edit",
-                      }}
-                      state={{ blog, index }}
-                    >
-                      <button>
+
+                    {isLoggedIn && (
+                      <button
+                        onClick={(e) => {
+                          e.preventDefault();
+                          removeBlog(index);
+                        }}
+                      >
                         <img
                           className="mx-4 w-10 rounded-full"
-                          alt={Edit}
-                          src={Edit}
+                          alt="Trash"
+                          src={Trash}
                         />
                       </button>
-                    </Link>
+                    )}
+                    {isLoggedIn && (
+                      <Link
+                        to={{
+                          pathname: "/blogs/edit",
+                        }}
+                        state={{ blog, index }}
+                      >
+                        <button>
+                          <img
+                            className="mx-4 w-10 rounded-full"
+                            alt={Edit}
+                            src={Edit}
+                          />
+                        </button>
+                      </Link>
+                    )}
                   </div>
                   <p className="text-2xl text-zinc-400 tracking-widest my-5">
                     {blog.publishDate}

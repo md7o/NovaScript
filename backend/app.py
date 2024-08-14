@@ -4,7 +4,8 @@ from blog import blog
 from admin import admin
 
 app = Flask(__name__)
-CORS(app)
+app.secret_key = 'aadmin'
+CORS(app, supports_credentials=True)
 
 app.register_blueprint(blog, url_prefix='/blog')
 app.register_blueprint(admin, url_prefix='/admin')
