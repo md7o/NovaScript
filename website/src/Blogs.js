@@ -1,22 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import BlogHeader from "./components/blog_section/widget/blog_header";
-import Github from "./images/linkedin.png";
-import Medium from "./images/medium.png";
+
 import Trash from "./images/trash-bin.png";
 import Edit from "./images/pen.png";
-import view from "./images/view.png";
+import eye from "./images/view.png";
 import { useTheme } from "./theme_context.js";
 
 import "./App.css";
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
-  const [click, setClick] = useState(0);
+  const [view, setView] = useState(0);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const navigate = useNavigate();
 
   const { isDarkTheme } = useTheme();
 
@@ -48,20 +45,6 @@ const Blogs = () => {
     checkLoginStatus();
   }, []);
 
-  const handleLogout = async () => {
-    try {
-      await axios.post(
-        "http://localhost:5000/admin/logout",
-        {},
-        { withCredentials: true }
-      );
-      setIsLoggedIn(false);
-      navigate("/blogs/login_admin"); // Redirect to login page after logout
-    } catch (error) {
-      console.error("Error logging out:", error);
-    }
-  };
-
   const removeBlog = async (index) => {
     try {
       const response = await axios.delete(
@@ -76,40 +59,21 @@ const Blogs = () => {
   };
 
   const handleClick = () => {
-    setClick(click + 1);
+    setView(view + 1);
   };
 
   return (
-    <div className="BlogBG">
+    <div>
       <BlogHeader />
 
-      <p className="text-center text-5xl font-bold mt-24">صفحة المدونات</p>
+      <p className="text-center text-5xl font-light mt-24">Blogs page</p>
 
-      {/* <h1 className="text-white text-center text-5xl font-bold pt-5">
-        Blogs Page
-      </h1> */}
-      {/* <Link to="/blogs/newsubject" state={{ blogs }}>
-        <button className="text-white text-3xl bg-blue-800 rounded-xl px-5 y-20">
-          Create New
-        </button>
-      </Link>
-      <button
+      {/* <button
         onClick={handleClick}
         className="text-white text-3xl bg-blue-800 rounded-xl px-5 y-20"
       >
         add
       </button> */}
-      {isLoggedIn && (
-        <div>
-          <button
-            onClick={handleLogout}
-            className="text-white text-2xl rounded-xl px-5 mx-1 y-20"
-          >
-            Logout
-          </button>
-        </div>
-      )}
-
       {blogs.length > 0 ? (
         <div>
           {blogs.map((blog, index) => (
@@ -176,9 +140,10 @@ const Blogs = () => {
                       </div>
                     ))}
                   </div>
+
                   <div className="flex justify-start items-center gap-2 my-5">
-                    <img alt={view} src={view} className="w-8" />
-                    <p className=" text-2xl">View: {click}</p>
+                    <img alt={eye} src={eye} className="w-8" />
+                    <p className=" text-2xl">View: {view}</p>
                   </div>
 
                   <p className="text-neutral-500 text-xl 3xl:w-biggW break-words">

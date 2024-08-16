@@ -1,11 +1,8 @@
 import React, { useState, useRef } from "react";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
-import LinkedIn from "../../images/linkedin.png";
-import Medium from "../../images/medium.png";
 import "../../App.css";
 import Loading from "../../images/loading.png";
-
 import TextEditor from "./widget/text_editor";
 import "react-quill/dist/quill.snow.css";
 
@@ -37,13 +34,6 @@ const NewSubject = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormState((prevState) => ({ ...prevState, [name]: value }));
-  };
-
-  const toggleCheckbox = (checkboxName) => {
-    setFormState((prevState) => ({
-      ...prevState,
-      [checkboxName]: !prevState[checkboxName],
-    }));
   };
 
   const handleImageChange = (e) => {
@@ -152,7 +142,7 @@ const NewSubject = () => {
             onChange={handleImageChange}
           />
           <button
-            className="text-2xl bg-customPurble text-white rounded-lg p-4 hover:bg-blue-700"
+            className="text-2xl bg-customPurble text-white rounded-lg p-4 hover:bg-blue-700 duration-300"
             type="button"
             onClick={handleButtonClick}
           >
@@ -176,7 +166,11 @@ const NewSubject = () => {
           <p className="my-16 opacity-50">best resolution: 1920 x 1080</p>
         )}
         <div>
-          <button type="button" onClick={addTag} className=" text-4xl">
+          <button
+            type="button"
+            onClick={addTag}
+            className=" text-4xl hover:opacity-60 duration-300"
+          >
             +Tag
           </button>
           <div className="flex justify-center items-center gap-5 my-5">
@@ -210,27 +204,6 @@ const NewSubject = () => {
           value={formState.descreption}
           onChange={handleChange}
         />
-        {/* <div>
-          <p className="text-white text-4xl mt-10">Available on:</p>
-          <PlatformCheckbox
-            platform="LinkedIn"
-            icon={LinkedIn}
-            isChecked={formState.isChecked1}
-            onCheckboxToggle={() => toggleCheckbox("isChecked1")}
-            link={formState.Link1}
-            onLinkChange={handleChange}
-            isVisible={formState.isChecked1}
-          />
-          <PlatformCheckbox
-            platform="Medium"
-            icon={Medium}
-            isChecked={formState.isChecked2}
-            onCheckboxToggle={() => toggleCheckbox("isChecked2")}
-            link={formState.Link2}
-            onLinkChange={handleChange}
-            isVisible={formState.isChecked2}
-          />
-        </div> */}
         {formState.publishDate && (
           <p className="text-3xl text-white">{formState.publishDate}</p>
         )}
@@ -253,44 +226,5 @@ const NewSubject = () => {
     </div>
   );
 };
-
-const PlatformCheckbox = ({
-  platform,
-  icon,
-  isChecked,
-  onCheckboxToggle,
-  link,
-  onLinkChange,
-  isVisible,
-}) => (
-  <>
-    <div className="flex justify-between items-center">
-      <div className="flex justify-start items-center ease-in-out duration-500 hover:opacity-50">
-        <img
-          className="mr-4 my-5 w-10 rounded-full"
-          alt={platform}
-          src={icon}
-        />
-        <p className="text-white text-3xl">{platform}</p>
-      </div>
-      <input
-        onClick={onCheckboxToggle}
-        type="checkbox"
-        checked={isChecked}
-        className="h-6 w-6"
-      />
-    </div>
-    {isVisible && (
-      <input
-        name={platform === "LinkedIn" ? "Link1" : "Link2"}
-        className="my-5 w-full text-2xl border border-gray-300 rounded-lg p-2 focus:outline-none ring-2 ring-slate-200 focus:ring-2 focus:ring-slate-600"
-        type="text"
-        placeholder={`https://${platform}.com`}
-        value={link}
-        onChange={onLinkChange}
-      />
-    )}
-  </>
-);
 
 export default NewSubject;

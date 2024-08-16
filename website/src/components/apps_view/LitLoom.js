@@ -56,7 +56,7 @@ const LitLoom = () => {
           href="https://github.com/md7o/LitLoom/tree/main"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-white text-3xl relative"
+          className="text-white text-3xl relative font-light"
         >
           GitHub
         </a>
@@ -64,22 +64,22 @@ const LitLoom = () => {
           href="https://play.google.com/store/apps/details?id=com.literature.LitLoom"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-white text-3xl relative"
+          className="text-white text-3xl relative font-light"
         >
           GooglePlay
         </a>
       </div>
       <div className="w-1/2 mx-auto pt-52 flex justify-around items-start ">
         <div>
-          <p className="text-white stroke xl:text-8xl text-5xl pt-24 font-bold mb-5 relative">
+          <p className="text-white stroke xl:text-8xl text-5xl pt-24 font-light mb-5 relative">
             LitLoom
           </p>
-          <p className="text-white xl:text-6xl text-4xl  mb-12 relative">
+          <p className="text-white xl:text-6xl text-4xl  mb-12 relative font-light">
             Literature Loom
           </p>
           <Link
             to={"/mobileapps/carwave"}
-            className="bg-customPurble hover:opacity-70 duration-300 px-20 opacity-90 font-bold text-white sm:text-4xl xl:text-5xl text-3xl rounded-roundedButt relative"
+            className="bg-customPurble hover:opacity-70 duration-300 px-20 opacity-90 font-light text-white sm:text-4xl xl:text-5xl text-3xl rounded-roundedButt relative"
             href="https://www.linkedin.com/in/mohammed-alheraki-6bb97b247/"
           >
             Explore
@@ -99,8 +99,8 @@ const LitLoom = () => {
         className="bg-SecondBG w-full xl:flex justify-center items-center 2xl:mt-between mt-between2 xl:h-mediumH h-h-96  gap-60"
       >
         <div className="xl:w-1/5 xl:text-left text-center pt-10">
-          <p className="xl:text-7xl  text-5xl text-white font-bold">Ai</p>
-          <p className="xl:text-5xl text-3xl text-white my-10">
+          <p className="xl:text-7xl  text-5xl text-white font-light">Ai</p>
+          <p className="xl:text-5xl text-3xl text-white my-10 font-light">
             All book content like story and cover book was build by ai
           </p>
         </div>
@@ -113,7 +113,7 @@ const LitLoom = () => {
         />
       </div>
       <div data-aos="fade-up" className="mt-96">
-        <p className="md:text-5xl text-3xl text-white font-bold text-center mb-16">
+        <p className="md:text-5xl text-3xl text-white font-light text-center mb-16">
           Full control on the text
         </p>
         <div className="flex justify-center items-center">
@@ -131,9 +131,11 @@ const LitLoom = () => {
             and scrambled it to make a type specimen book.
           </p>
         </div>
-        <div className="xl:flex xl:justify-center text-center my-8">
-          <p className="text-white text-4xl">Font Size: {fontSize}px</p>
-          <div className="flex justify-center my-3">
+        <div className="xl:flex xl:justify-center items-center text-center my-8">
+          <p className="text-white text-4xl font-light">
+            Font Size: {fontSize}px
+          </p>
+          <div className="flex justify-center my-3 font-light">
             <p className="text-white text-4xl pl-10 ">Bold: </p>
             <p
               style={{ color: isBold ? "lightgreen" : "red" }}
@@ -142,7 +144,7 @@ const LitLoom = () => {
               {isBold ? "true" : "false"}
             </p>
           </div>
-          <div className="flex justify-center">
+          <div className="flex justify-center font-light">
             <p className="text-white text-4xl pl-10">Align: </p>
             <p
               style={{ color: isAlign ? "lightgreen" : "red" }}
@@ -152,51 +154,51 @@ const LitLoom = () => {
             </p>
           </div>
         </div>
-        <div className="sm:flex grid justify-center gap-10">
+        <div className="sm:flex grid justify-center gap-10 font-light">
           <button
             onClick={boldFont}
-            className="bg-SecondBG  text-white rounded-roundedButt font-bold text-5xl px-14 py-5"
+            className="bg-SecondBG  text-white rounded-roundedButt  text-5xl px-14 py-5"
           >
             Bold
           </button>
           <button
             onClick={increaseFontSize}
-            className="bg-SecondBG text-white rounded-roundedButt font-bold text-5xl px-14 py-5"
+            className="bg-SecondBG text-white rounded-roundedButt  text-5xl px-14 py-5"
           >
             +
           </button>
           <button
             onClick={decreaseFontSize}
-            className="bg-SecondBG text-white rounded-roundedButt font-bold text-5xl px-14 py-5"
+            className="bg-SecondBG text-white rounded-roundedButt  text-5xl px-14 py-5"
           >
             -
           </button>
           <button
             onClick={alignFont}
-            className="bg-SecondBG text-white rounded-roundedButt font-bold text-5xl px-14 py-5"
+            className="bg-SecondBG text-white rounded-roundedButt text-5xl px-14 py-5"
           >
             Align
           </button>
         </div>
-        <p className="md:text-5xl text-3xl text-white font-bold text-center my-16">
+        <p className="md:text-5xl text-3xl text-white font-light text-center my-16">
           Full control on the text
         </p>
-        <div className="flex justify-center items-center gap-5 mt-10">
+        <div className="flex justify-center items-center gap-5 mt-10 font-light">
           <span
             onClick={() => bgColor("bg-white")}
-            className="text-6xl text-FirstBG font-bold bg-white p-10 rounded-defaultRounded cursor-pointer hover:opacity-75 duration-300"
+            className="text-6xl text-FirstBG  bg-white p-10 rounded-defaultRounded cursor-pointer hover:opacity-75 duration-300"
           >
             Aa
           </span>
           <span
             onClick={() => bgColor("bg-SecondBG")}
-            className="text-6xl text-white font-bold bg-SecondBG p-10 rounded-defaultRounded cursor-pointer hover:opacity-75 duration-300"
+            className="text-6xl text-white  bg-SecondBG p-10 rounded-defaultRounded cursor-pointer hover:opacity-75 duration-300"
           >
             Aa
           </span>
           <span
             onClick={() => bgColor("bg-orange-100")}
-            className="text-6xl text-FirstBG font-bold bg-orange-100 p-10 rounded-defaultRounded cursor-pointer hover:opacity-75 duration-300"
+            className="text-6xl text-FirstBG  bg-orange-100 p-10 rounded-defaultRounded cursor-pointer hover:opacity-75 duration-300"
           >
             Aa
           </span>
@@ -208,15 +210,16 @@ const LitLoom = () => {
       >
         <p
           data-aos="fade-up"
-          className="xl:text-6xl text-4xl xl:text-left text-center text-white font-bold xl:pl-60 pt-10 mb-16"
+          className="xl:text-6xl text-4xl xl:text-left text-center text-white font-light xl:pl-60 pt-10 mb-16"
         >
           Various books
         </p>
 
         <div className="2xl:mx-24 mb-20">
           <Swiper
-            modules={[A11y]}
+            modules={[Pagination, A11y]}
             effect="parallax"
+            pagination={{ clickable: true }}
             spaceBetween={20}
             slidesPerView={3}
             loop={true}

@@ -21,12 +21,16 @@ const Header = () => {
   };
 
   return (
-    <div className="sticky top-0" style={appStyles}>
-      <div className="flex justify-around items-center mt-5">
+    <div
+      className={`fixed top-0 w-full py-2 ${
+        isDarkTheme ? "light-box" : "dark-box"
+      }`}
+    >
+      <div className="flex justify-around items-center ">
         <img
           to={"/"}
           rel="noopener noreferrer"
-          className="w-32 hover:underline hover:underline-offset-5 hover:duration-500 hover:opacity-65 cursor-pointer"
+          className="w-32 hover:underline hover:underline-offset-5 duration-500 hover:opacity-65 cursor-pointer"
           src={NSLogo}
           alt={NSLogo}
         />
@@ -34,14 +38,14 @@ const Header = () => {
           <Link
             to={"/"}
             rel="noopener noreferrer"
-            className="hover:underline hover:underline-offset-5 hover:duration-500 hover:opacity-65"
+            className="hover:underline hover:underline-offset-5 duration-500 hover:opacity-65"
           >
             Home
           </Link>
           <Link
             to={"/blogs"}
             rel="noopener noreferrer"
-            className="hover:underline hover:underline-offset-5 hover:duration-500 hover:opacity-65"
+            className="hover:underline hover:underline-offset-5 duration-500 hover:opacity-65"
           >
             Blogs
           </Link>

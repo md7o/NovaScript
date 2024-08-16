@@ -90,7 +90,7 @@ const CarWave = () => {
         src={onHill}
         alt="car"
       />
-      <div className="flex xl:justify-end justify-center items-center gap-14 pt-10 xl:pr-96">
+      <div className="flex xl:justify-end justify-center items-center gap-14 font-light pt-10 xl:pr-96">
         <a
           href="https://github.com/md7o/World-Cars"
           target="_blank"
@@ -109,21 +109,19 @@ const CarWave = () => {
         </a>
       </div>
       <div className="w-1/2 mx-auto pt-72">
-        <p className="text-white stroke xl:text-8xl text-5xl tracking-widest font-bold  relative">
+        <p className="text-white stroke xl:text-8xl text-4xl tracking-widest relative">
           Car Wave
         </p>
-        <p className="hlao text-transparent xl:text-8xl text-5xl tracking-widest relative ">
+        <p className="hlao text-transparent xl:text-8xl text-4xl tracking-widest relative ">
           Car Wave
         </p>
-        <p className="hlao text-transparent xl:text-8xl text-5xl tracking-widest relative pb-4">
+        <p className="hlao text-transparent xl:text-8xl text-4xl tracking-widest relative pb-4 md:mb-14 mb-8">
           Car Wave
         </p>
-        <p className="text-white xl:text-5xl text-4xl md:mb-14 mb-8 relative">
-          Car WaveCar WaveCar Wave
-        </p>
+
         <Link
           to={"/mobileapps/carwave"}
-          className="bg-customPurble hover:opacity-70 duration-300 xl:px-52 sm:px-32 px-24 md:py-3 opacity-90 font-bold text-white text-4xl rounded-roundedButt relative "
+          className="bg-customPurble hover:opacity-70 duration-300 xl:px-44 sm:px-32 px-24 md:py-3 opacity-90 font-light text-white text-4xl rounded-roundedButt relative "
           href="https://www.linkedin.com/in/mohammed-alheraki-6bb97b247/"
         >
           Explore
@@ -135,7 +133,9 @@ const CarWave = () => {
         className="bg-SecondBG w-full xl:flex justify-center items-center 2xl:mt-between mt-between3 xl:h-mediumH h-biggH gap-60"
       >
         <div className="xl:w-1/5 xl:text-left text-center">
-          <p className="xl:text-6xl  text-4xl text-white font-bold">HomePage</p>
+          <p className="xl:text-6xl  text-4xl text-white font-light">
+            HomePage
+          </p>
           <p className="xl:text-4xl text-3xl text-white my-10">
             Top 10 car sales rate in one year
           </p>
@@ -146,7 +146,7 @@ const CarWave = () => {
             <button
               data-aos="fade-up"
               onClick={handleClick}
-              className="bg-customPurble hover:opacity-70 duration-300 xl:px-20 xl:py-3 p-4 mb-10 opacity-90 font-bold text-white xl:text-5xl text-4xl rounded-roundedButt"
+              className="bg-customPurble hover:opacity-70 duration-300 xl:px-20 xl:py-3 p-4 mb-10 opacity-90 font-light text-white xl:text-5xl text-4xl rounded-roundedButt"
             >
               Show
             </button>
@@ -168,19 +168,19 @@ const CarWave = () => {
         />
       </div>
       <div data-aos="fade-up" className="mt-96">
-        <p className="md:text-5xl text-3xl text-white font-bold text-center mb-16">
+        <p className="md:text-5xl text-3xl text-white font-light text-center mb-16">
           Each country has four famous brands
         </p>
         <div className="xl:flex justify-center items-center mx-auto gap-52 ">
           {Brand.map((brand, index) => (
             <div c>
               <img
-                className="md:w-44 w-32 mx-auto"
+                className="md:w-44 w-32 mx-auto hover:animate-pulse"
                 src={brand.src}
                 alt={brand.alt}
                 key={index}
               />
-              <p className="text-center text-white text-5xl font-bold xl:mt-4 mb-10">
+              <p className="text-center text-white text-5xl font-light xl:mt-4 mb-10">
                 {brand.title}
               </p>
             </div>
@@ -190,12 +190,12 @@ const CarWave = () => {
       <div data-aos="fade-up" className="xl:mt-52 mt-32 bg-SecondBG">
         <p
           data-aos="fade-up"
-          className="xl:text-7xl text-4xl xl:text-left text-center text-white font-bold xl:pl-60 pt-10 mb-16"
+          className="xl:text-7xl text-4xl xl:text-left text-center text-white font-light xl:pl-60 pt-10 mb-16"
         >
           Explore the vehicles
         </p>
 
-        <div data-aos="fade-up" className="2xl:px-60">
+        <div data-aos="fade-up" className="2xl:px-60 hover:animate-pulse">
           <Swiper
             modules={[Pagination, A11y]}
             effect="parallax"
@@ -240,7 +240,7 @@ const CarWave = () => {
         </div>
         <p
           data-aos="fade-up"
-          className="xl:text-6xl text-4xl text-white text-center my-10 pb-10"
+          className="xl:text-6xl text-4xl text-white text-center font-light my-10 pb-10"
         >
           Show all angles of the cars
         </p>
@@ -249,7 +249,7 @@ const CarWave = () => {
         data-aos="fade-up"
         className="2xl:flex justify-center items-center my-between3"
       >
-        <div className="block justify-center items-center mx-52">
+        <div className="block justify-center items-center mx-52 ">
           {specifications.map((specifi, index) => (
             <div
               key={index}
@@ -257,7 +257,7 @@ const CarWave = () => {
             >
               <div className="flex justify-center items-center">
                 <img
-                  className="sm:w-12 w-8 mr-4"
+                  className="sm:w-12 w-8 mr-4 hover:animate-spin duration-500"
                   src={specifi.icon}
                   alt="icon"
                 />

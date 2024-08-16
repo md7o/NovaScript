@@ -23,7 +23,9 @@ module.exports = {
         smallH: "400px",
         smallHplus: "500px",
         mediumH: "600px",
+        height700: "700px",
         biggH: "800px",
+        xLarge: "900px",
         resizeBG: "1000px",
         hugeH: "1300px",
       },
@@ -31,6 +33,7 @@ module.exports = {
         between: "650px",
         between2: "450px",
         between3: "150px",
+        between4: "350px",
       },
       screens: {
         "2xl": "1536px",

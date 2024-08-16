@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Topics = () => {
   return (
-    <div className="block w-2/5 mx-auto">
+    <div className="block w-2/5 mx-auto mt-24 ">
       <div className="flex justify-between items-center px-5 mb-10">
         <p className="flex justify-end text-4xl font-light">Blogs</p>
         <Link
