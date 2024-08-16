@@ -41,8 +41,18 @@ const Blogs = () => {
       }
     };
 
+    const fetchView = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/blog/get_view");
+        setView(response.data.number);
+      } catch (error) {
+        console.error("Error fetching view:", error);
+      }
+    };
+
     fetchBlogs();
     checkLoginStatus();
+    fetchView();
   }, []);
 
   const removeBlog = async (index) => {
@@ -58,8 +68,13 @@ const Blogs = () => {
     }
   };
 
-  const handleClick = () => {
-    setView(view + 1);
+  const handleIncrement = async () => {
+    try {
+      const response = await axios.post("http://localhost:5000/blog/increment");
+      setView(response.data.number);
+    } catch (error) {
+      console.error("Error incrementing view:", error);
+    }
   };
 
   return (
@@ -68,12 +83,8 @@ const Blogs = () => {
 
       <p className="text-center text-5xl font-light mt-24">Blogs page</p>
 
-      {/* <button
-        onClick={handleClick}
-        className="text-white text-3xl bg-blue-800 rounded-xl px-5 y-20"
-      >
-        add
-      </button> */}
+      <p>Current View: {view}</p>
+      <button onClick={handleIncrement}>Increase View</button>
       {blogs.length > 0 ? (
         <div>
           {blogs.map((blog, index) => (
@@ -87,7 +98,7 @@ const Blogs = () => {
                 to={{
                   pathname: "/blogs/subject",
                 }}
-                onCl={handleClick}
+                onClick={handleIncrement}
                 state={{ blog }}
                 className="3xl:flex 3xl:flex-row flex flex-col-reverse justify-between 3xl:items-center"
               >
