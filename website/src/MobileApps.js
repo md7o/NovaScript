@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Header from "./components/home_section/header.js";
+import Header from "./components/home_section/Header.js";
 import LitLoomHome from "./images/LitLoomHomePage.png";
 import CarWaveHome from "./images/HomePageCarWave.png";
 import FooterPart from "./components/home_section/footer_part.js";

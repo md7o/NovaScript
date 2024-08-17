@@ -30,11 +30,11 @@ const Header = () => {
         <img
           to={"/"}
           rel="noopener noreferrer"
-          className="w-32 hover:underline hover:underline-offset-5 duration-500 hover:opacity-65 cursor-pointer"
+          className="sm:block hidden w-32 hover:underline hover:underline-offset-5 duration-500 hover:opacity-65 cursor-pointer"
           src={NSLogo}
           alt={NSLogo}
         />
-        <div className="flex justify-between items-center text-2xl font-light gap-5">
+        <div className="flex justify-between items-center text-2xl font-light gap-3">
           <Link
             to={"/"}
             rel="noopener noreferrer"
@@ -60,7 +60,7 @@ const Header = () => {
 
         <button onClick={handleTheme}>
           <img
-            className="w-7 ml-24 hover:underline hover:underline-offset-5 hover:duration-500 hover:opacity-65 hover:animate-pulse"
+            className=" w-7 ml-24 hover:underline hover:underline-offset-5 hover:duration-500 hover:opacity-65 hover:animate-pulse"
             src={isDarkTheme ? LightMode : DarkMode}
             alt="Toggle"
           />

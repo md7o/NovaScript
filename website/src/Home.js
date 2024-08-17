@@ -1,4 +1,4 @@
-import Header from "./components/home_section/header.js";
+import Header from "./components/home_section/Header.js";
 import FooterPart from "./components/home_section/footer_part.js";
 import Blogs from "./components/home_section/Topics.js";
 import BasicInterface from "./components/home_section/basic_interface.js";

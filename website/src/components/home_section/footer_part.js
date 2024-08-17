@@ -44,8 +44,8 @@ const FooterPart = () => {
   };
 
   return (
-    <div className="h-52 mt-24">
-      <div className="px-72 py-10 bg-FirstBG">
+    <div className="h-52 mt-24 ">
+      <div className="px-24 py-10 bg-FirstBG">
         <img
           to={"/mobileapps"}
           rel="noopener noreferrer"
@@ -57,10 +57,10 @@ const FooterPart = () => {
           NovaScript
         </p>
         <div className="bg-white opacity-15 h-line mx-auto mt-24" />
-        <div className="flex justify-end items-center gap-8 mt-5">
+        <div className="flex lg:justify-end justify-center items-center gap-8 mt-5">
           {Logo.map((logo, index) => (
             <p
-              className=" cursor-pointer opacity-80 text-white text-lg hover:opacity-60 hover:duration-150"
+              className=" cursor-pointer opacity-80 text-white md:text-lg text-sm hover:opacity-60 hover:duration-150"
               src={logo.alt}
               key={index}
               onClick={() => handleClick(logo.link)}

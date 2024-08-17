@@ -11,7 +11,7 @@ const MobilePart = () => {
         isDarkTheme ? "light-box" : "dark-box"
       }`}
     >
-      <div className="flex justify-center items-center gap-24 my-52">
+      <div className="flex justify-center items-center gap-24 my-52 md:text-left text-center">
         <div>
           <p className="stroke xl:text-8xl text-5xl tracking-widest ">
             Flutter App

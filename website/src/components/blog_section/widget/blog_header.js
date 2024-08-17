@@ -43,15 +43,19 @@ const BlogHeader = () => {
     toggleTheme();
   };
   return (
-    <div className="sticky top-0 flex justify-around items-center text-white mt-5">
-      <img
+
+<div
+      className={`fixed top-0 w-full flex justify-around items-center text-white py-2 ${
+        isDarkTheme ? "light-box" : "dark-box"
+      }`}
+    >     <img
         to={"/mobileapps"}
         rel="noopener noreferrer"
         className="w-32 hover:underline hover:underline-offset-5 hover:duration-500 hover:opacity-65"
         src={NSLogo}
         alt={NSLogo}
       />
-      <div className="flex justify-between items-center text-2xl font-light gap-5">
+      <div className="flex justify-between items-center text-2xl font-light gap-3">
         <Link
           to={"/"}
           rel="noopener noreferrer"

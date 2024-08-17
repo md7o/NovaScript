@@ -49,7 +49,7 @@ const BasicInterface = () => {
 
   return (
     <div className=" mx-auto">
-      <p className="flex justify-center text-6xl mt-28 mb-5 ">
+      <p className="flex justify-center md:text-6xl text-4xl mt-28 mb-5 ">
         Mohammed Ayman Alheraki
       </p>
       <p className="flex justify-center font-light text-2xl text-zinc-500">
@@ -67,7 +67,7 @@ const BasicInterface = () => {
           </p>
         ))}
       </div>
-      <div className="md:w-2/6 mx-auto 2xl:flex justify-center items-center gap-5 mt-20">
+      <div className="lg:w-3/5 sm:w-full mx-auto sm:flex justify-center items-center gap-5 mt-20">
         <div
           className={`w-full h-smallH rounded-roundedButt duration-500 hover:scale-95 cursor-pointer ${
             isDarkTheme ? "light-box" : "dark-box"

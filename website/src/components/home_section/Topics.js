@@ -15,7 +15,7 @@ const Topics = () => {
           Explore more &gt;
         </Link>
       </div>
-      <div className="2.5xl:flex justify-center items-center mx-auto gap-x-5">
+      <div className="2xl:flex justify-center items-center mx-auto gap-x-5">
         <div className="duration-500 hover:bg-zinc-900 hover:rounded-roundedButt ">
           <a
             className="hover:opacity-80 duration-300 ease-in-out "
