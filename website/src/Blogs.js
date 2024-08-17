@@ -83,14 +83,14 @@ const Blogs = () => {
 
       <p className="text-center text-5xl font-light mt-24">Blogs page</p>
 
-      <p>Current View: {view}</p>
-      <button onClick={handleIncrement}>Increase View</button>
+      {/* <p>Current View: {view}</p> */}
+      {/* <button onClick={handleIncrement}>Increase View</button> */}
       {blogs.length > 0 ? (
-        <div>
+        <div className="xl:flex justify-center xl:w-full lg:w-1/2 w-full mx-auto gap-10">
           {blogs.map((blog, index) => (
             <div
               key={index}
-              className={` 3xl:w-2/4 xl:w-1/3 md:w-1/2 mx-auto rounded-roundedButt my-10 ${
+              className={`rounded-roundedButt my-10 p-10 ${
                 isDarkTheme ? "light-box" : "dark-box"
               } `}
             >
@@ -100,68 +100,78 @@ const Blogs = () => {
                 }}
                 onClick={handleIncrement}
                 state={{ blog }}
-                className="3xl:flex 3xl:flex-row flex flex-col-reverse justify-between 3xl:items-center"
+                className="block justify-between items-center"
               >
-                <div className="2xl:p-14 p-7 ">
-                  <div className="flex gap-5">
-                    <p className=" 2xl:text-5xl text-4xl">{blog.title}</p>
+                {blog.image && (
+                  <div>
+                    <img
+                      src={blog.image}
+                      alt="Blog"
+                      className="rounded-roundedButt w-hugeW mx-auto"
+                    />
+                  </div>
+                )}
+                <div className="">
+                  <p className="text-4xl py-5 font-light xl:w-biggW break-words">
+                    {blog.title}
+                  </p>
 
-                    {isLoggedIn && (
-                      <button
-                        onClick={(e) => {
-                          e.preventDefault();
-                          removeBlog(index);
-                        }}
-                      >
+                  {isLoggedIn && (
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        removeBlog(index);
+                      }}
+                    >
+                      <img
+                        className="mr-3 w-10 rounded-full hover:opacity-50 duration-300"
+                        alt="Trash"
+                        src={Trash}
+                      />
+                    </button>
+                  )}
+                  {isLoggedIn && (
+                    <Link
+                      to={{
+                        pathname: "/blogs/edit",
+                      }}
+                      state={{ blog, index }}
+                    >
+                      <button>
                         <img
-                          className="mx-4 w-10 rounded-full"
-                          alt="Trash"
-                          src={Trash}
+                          className="w-10 rounded-full hover:opacity-50 duration-300"
+                          alt={Edit}
+                          src={Edit}
                         />
                       </button>
-                    )}
-                    {isLoggedIn && (
-                      <Link
-                        to={{
-                          pathname: "/blogs/edit",
-                        }}
-                        state={{ blog, index }}
-                      >
-                        <button>
-                          <img
-                            className="mx-4 w-10 rounded-full"
-                            alt={Edit}
-                            src={Edit}
-                          />
-                        </button>
-                      </Link>
-                    )}
-                  </div>
-                  <p className="text-2xl text-zinc-400 tracking-widest my-5">
-                    {blog.publishDate}
-                  </p>
-                  <div className="text-white flex gap-5 mx-auto">
-                    {(blog.tags || []).map((tag, index) => (
-                      <div
-                        key={index}
-                        style={{ backgroundColor: tag.color }}
-                        className="text-white text-3xl rounded-xl px-5"
-                      >
-                        <p>{tag.value}</p>
-                      </div>
-                    ))}
-                  </div>
+                    </Link>
+                  )}
+                </div>
+                <p className="text-2xl text-zinc-400 tracking-widest my-3">
+                  {blog.publishDate}
+                </p>
+                <div className="text-white flex gap-5 mx-auto">
+                  {(blog.tags || []).map((tag, index) => (
+                    <div
+                      key={index}
+                      style={{ backgroundColor: tag.color }}
+                      className="text-white text-3xl rounded-xl px-5"
+                    >
+                      <p>{tag.value}</p>
+                    </div>
+                  ))}
+                </div>
 
-                  <div className="flex justify-start items-center gap-2 my-5">
-                    <img alt={eye} src={eye} className="w-8" />
-                    <p className=" text-2xl">View: {view}</p>
-                  </div>
+                <div className="flex justify-start items-center gap-2 my-5">
+                  <img alt={eye} src={eye} className="w-8" />
+                  <p className=" text-2xl">View: {view}</p>
+                </div>
 
-                  <p className="text-neutral-500 text-xl 3xl:w-biggW break-words">
-                    {blog.descreption}
-                  </p>
+                <p className="text-neutral-500 text-xl xl:w-biggW break-words">
+                  {blog.descreption}
+                </p>
 
-                  {/* <p className="text-white text-4xl">Available on:</p>
+                {/* <p className="text-white text-4xl">Available on:</p>
                   {blog.isChecked1 && (
                     <a
                       className="flex justify-start items-center pointer-events-auto ease-in-out duration-500 hover:opacity-50"
@@ -192,16 +202,6 @@ const Blogs = () => {
                       <p className="text-white text-3xl">Medium</p>
                     </a>
                   )} */}
-                </div>
-                {blog.image && (
-                  <div className="flex justify-center items-center mx-10 3xl:my-10">
-                    <img
-                      src={blog.image}
-                      alt="Blog"
-                      className="rounded-roundedButt 3xl:mt-0 mt-10 w-hugeW"
-                    />
-                  </div>
-                )}
               </Link>
             </div>
           ))}

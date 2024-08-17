@@ -32,14 +32,12 @@ const Subject = () => {
         ))}
       </div>
 
-      <p className="text-xl  my-3">{blog.publishDate}</p>
+      <p className="text-xl my-3">{blog.publishDate}</p>
 
-      <div
-        className={` bg-gray-200 opacity-35 h-line w-full mx-auto mb-16  `}
-      />
+      <div className={`bg-gray-200 opacity-35 h-line w-full mx-auto mb-16  `} />
 
       <p
-        className={` text-2xl w-full  ql-editor  `}
+        className={`text-2xl w-full ql-editor`}
         dangerouslySetInnerHTML={{ __html: blog.body }}
       />
     </div>
